@@ -1,0 +1,34 @@
+- name: Install HTTP Packages
+  apt: name=apache2 update_cache=yes state=latest
+ 
+- name: Start Apache service
+  systemd: name=apache2 state=started enabled=yes
+ 
+- name: Create Apache Document Root
+  file:
+    path: "/var/www/{{ http_host }}"
+    state: directory
+    owner: "www-data"
+    group: "www-data"
+    mode: '0755'
+ 
+- name: Set up Apache VirtualHost
+  template:
+    src: "apache.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ http_conf }}"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify: 'restart apache2'
+
+- name: Enable rewrite module
+  apache2_module: state=present name=rewrite
+
+- name: Enable new site
+  shell: /usr/sbin/a2ensite {{ http_conf }}
+  changed_when: false
+  notify: 'reload apache2'
+
+- name: Disable default Apache site
+  shell: /usr/sbin/a2dissite 000-default.conf
+  notify: 'restart apache2'

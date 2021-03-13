@@ -1,0 +1,10 @@
+---
+# handlers file for apache
+- name: restart apache2
+  service: name=apache2 state=restarted
+  become: yes
+
+# handlers file for apache
+- name: reload apache2
+  service: name=apache2 state=reloaded
+  become: yes

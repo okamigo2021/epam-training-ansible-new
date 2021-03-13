@@ -1,0 +1,10 @@
+- hosts: admin
+  gather_facts: True
+  become: true
+  vars_files:
+    - vars/default.yml
+  roles:
+    - apache
+    - php
+    - mysql
+    - wordpress

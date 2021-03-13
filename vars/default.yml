@@ -1,0 +1,14 @@
+#PHP Settings
+php_modules: [ 'php', 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+ 
+#MySQL Settings
+mysql_root_password: "1111"
+mysql_db: "wpdb"
+mysql_user: "wpuser"
+mysql_password: "1111"
+mysql_root_pass: mypassword
+ 
+#HTTP Settings
+http_host: "localhost"
+http_conf: "localhost.conf"
+http_port: "80"
