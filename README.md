@@ -22,7 +22,7 @@
 │       │   └── main.yml  
 │       └── tasks  
 │           └── main.yml  
-├── templates
+├── templates  
 │   └── apache.conf.j2  
 ├── vars  
 │   └── default.yml  
